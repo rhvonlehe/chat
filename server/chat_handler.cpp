@@ -2,7 +2,7 @@
 
 void chat_handler::send(std::string msg)
 {
-    service_.post(write_strand_.wrap( [&msg,me=shared_from_this()] ()
+    context_.post(write_strand_.wrap( [&msg,me=shared_from_this()] ()
     {
         me->queue_message(msg);
     }));

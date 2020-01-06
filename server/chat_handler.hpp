@@ -9,14 +9,14 @@
 class chat_handler : public std::enable_shared_from_this<chat_handler>
 {
     using bsock = boost::asio::ip::tcp::socket;
-    using bservice = boost::asio::io_service;
-    using bstrand = boost::asio::io_service::strand;
+    using bcontext = boost::asio::io_context;
+    using bstrand = boost::asio::io_context::strand;
 
 public:
-    chat_handler(bservice& service)
-        : service_(service),
-          socket_(service),
-          write_strand_(service)
+    chat_handler(bcontext& context)
+        : context_(context),
+          socket_(context),
+          write_strand_(context)
     {}
 
     void send(std::string msg);
@@ -40,7 +40,7 @@ private:
     void packet_send_done(boost::system::error_code const& error);
 
 
-    bservice& service_;
+    bcontext& context_;
     bsock socket_;
     bstrand write_strand_;
     boost::asio::streambuf in_packet_;
