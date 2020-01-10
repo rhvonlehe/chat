@@ -15,7 +15,8 @@ public:
     asio_generic_server(int thread_count=1)
         : thread_count_(thread_count),
           acceptor_(io_context_)
-    {}
+    {
+    }
 
     void start_server(uint16_t port)
     {
