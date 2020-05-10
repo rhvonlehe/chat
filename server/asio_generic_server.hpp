@@ -20,8 +20,7 @@ public:
 
     void start_server(uint16_t port)
     {
-        auto handler =
-                std::make_shared<ConnectionHandler>(io_context_);
+        auto handler =  std::make_shared<ConnectionHandler>(io_context_);
 
         // set up the acceptor to listen on the tcp port
         boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), port);
@@ -52,8 +51,7 @@ private:
 
         handler->start();
 
-        auto new_handler =
-                std::make_shared<ConnectionHandler>(io_context_);
+        auto new_handler = std::make_shared<ConnectionHandler>(io_context_);
 
         acceptor_.async_accept( new_handler->socket(),
                                 [=](auto ec)
