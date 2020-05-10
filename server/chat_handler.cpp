@@ -67,6 +67,4 @@ void chat_handler::read_packet_done(const boost::system::error_code& error,
 
     std::cout << "I received: " << packet_string << std::endl;
     // do something with it
-
-    read_packet();
 }
